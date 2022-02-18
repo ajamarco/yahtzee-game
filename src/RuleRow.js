@@ -15,10 +15,11 @@ class RuleRow extends Component {
   }
 
   render() {
+    const {description} = this.props;
     return (
       <tr className={`RuleRow RuleRow-${!this.props.score ? 'active': 'disabled' }`} onClick={this.handleRuleClick} >
         <td className="RuleRow-name">{this.props.name}</td>
-        <td className="RuleRow-score">{this.props.score}</td>
+        <td className="RuleRow-score">{this.props.score ? this.props.score : description}</td>
       </tr>
     )
   }
