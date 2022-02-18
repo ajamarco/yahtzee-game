@@ -8,7 +8,6 @@ class RuleRow extends Component {
   }
 
   handleRuleClick = e => {
-    console.log('inside handle rule click current score: ',this.props.score);
     if(this.props.score !== undefined) return;
     this.props.doScore(this.props.name,`${this.props.name}.evalRoll`);
 

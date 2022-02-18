@@ -67,6 +67,7 @@ class FullHouse extends Rule {
 /** Check for small straights. */
 class SmallStraight extends Rule {
   evalRoll = (dice) => {
+    console.log('evalroll func reached. dice ', dice);
     //join the dice array
     const sortedDice = dice.sort();
     const diceSet = new Set();
