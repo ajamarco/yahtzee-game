@@ -14,7 +14,7 @@ class Dice extends Component {
             idx={idx}
             key={idx}
             disabled={this.props.disabled == 0}
-            rolling={this.props.rolling}
+            rolling={this.props.rolling[idx]}
           />
         ))}
       </div>

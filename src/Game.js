@@ -21,8 +21,8 @@ class Game extends Component {
 
       rollsLeft: NUM_ROLLS,
 
-      //set rolling, which will be false. This will only change if the user clicks to Reroll the dice
-      rolling: false,
+      //set rolling, which will be an array of false. This will only change if the user clicks to Reroll the dice and if the current element is not locked
+      rolling: Array(NUM_DICE).fill(false),
 
       //all the scores will be initiated with undefined
       scores: {
@@ -63,12 +63,14 @@ class Game extends Component {
       rollsLeft: st.rollsLeft - 1,
 
       //set Rolling to be true
-      rolling: true
+      rolling: st.locked.map((d, i) => 
+        !st.locked[i]
+      )
     }));
 
     //after 1 second, set rolling to false. rolling will be used to stop the roll effect on the dice
     setTimeout(() => {
-      this.setState((st) => ({rolling: false}))
+      this.setState((st) => ({rolling: Array(NUM_DICE).fill(false)}))
     }, 1000);
   }
 

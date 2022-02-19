@@ -39,6 +39,7 @@ class Rule {
 
 class TotalOneNumber extends Rule {
   evalRoll = (dice) => {
+      console.log('inside eval ', this.val * this.count(dice, this.val))
     return this.val * this.count(dice, this.val);
   };
 }
@@ -77,8 +78,6 @@ class SmallStraight extends Rule {
 
     diceSet.forEach((e) => (joinedDice = `${joinedDice}${e}`));
 
-    console.log("dice is ", dice);
-    console.log("joined dice ", joinedDice);
     if (
       joinedDice.includes("2345") ||
       joinedDice.includes("1234") ||
