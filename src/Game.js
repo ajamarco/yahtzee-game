@@ -21,7 +21,7 @@ class Game extends Component {
 
       rollsLeft: NUM_ROLLS,
 
-      //set rolling, which will be an array of false. This will only change if the user clicks to Reroll the dice and if the current element is not locked
+      //set rolling, which will be an array of false. This will only change if the user clicks to Reroll the dice and if the current die is not locked
       rolling: Array(NUM_DICE).fill(false),
 
       //all the scores will be initiated with undefined
@@ -97,7 +97,6 @@ class Game extends Component {
     this.setState((st) => ({
       //score will be updated based on the ruleName that has been passed as a parameter ('ones', 'twos', 'threes', etc) and the return of the function passed as an argument ruleFn. This function will get the values on the dice
       scores: { ...st.scores, [rulename]: ruleFn(this.state.dice) },
-
       rollsLeft: NUM_ROLLS,
       locked: Array(NUM_DICE).fill(false),
     }));
@@ -105,6 +104,8 @@ class Game extends Component {
   }
 
   render() {
+    //save a variable to tell if the Roll button will be disabled. it will be if every die is locked or if any of the dice is rolling
+    const buttonDisabled = this.state.locked.every((x) => x) || this.state.rolling.includes(true);
     return (
       <div className="Game">
         <header className="Game-header">
@@ -120,7 +121,7 @@ class Game extends Component {
             <div className="Game-button-wrapper">
               <button
                 className="Game-reroll"
-                disabled={this.state.locked.every((x) => x)}
+                disabled={buttonDisabled}
                 onClick={this.roll}
               >
                 {this.state.rollsLeft} Rerolls Left
